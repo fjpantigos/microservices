@@ -31,8 +31,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student update(Student student) {
-        return studentRepository.update(student);
+    public Student update(String uid, Student student) {
+        return studentRepository.update(uid, student);
     }
 
     @Override

@@ -1,8 +1,7 @@
-package com.idat.student.infraestructure.entries;
+package com.idat.profesor.infraestructure.entries;
 
-import com.idat.student.domain.model.Student;
-import com.idat.student.domain.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.idat.profesor.domain.model.Profesor;
+import com.idat.profesor.domain.service.ProfesorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,44 +16,46 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/instituto/student/")
-public class StudentController {
+@RequestMapping("/api/v1/instituto/profesor/")
+public class ProfesorController {
 
-    @Autowired
-    private StudentService studentService;
+    private final ProfesorService profesorService;
+
+    public ProfesorController(ProfesorService profesorService) {
+        this.profesorService = profesorService;
+    }
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.findAll();
+    ResponseEntity<List<Profesor>> findAll() {
+        return ResponseEntity.ok(profesorService.findAll());
     }
 
     @GetMapping("/{uid}")
-    public ResponseEntity<Student> getStudentById(@PathVariable("uid") String uid) {
+    ResponseEntity<Profesor> findByUid(@PathVariable("uid") String uid) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(studentService.findById(uid));
+                .body(profesorService.findById(uid));
     }
 
     @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+    ResponseEntity<Profesor> create(@RequestBody Profesor profesor) {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                .body(studentService.save(student));
+                .body(profesorService.save(profesor));
     }
 
     @PutMapping("/{uid}")
-    public ResponseEntity<Student> updateStudent(@PathVariable("uid") String uid, @RequestBody Student student) {
+    ResponseEntity<Profesor>  update(@PathVariable("uid") String uid, @RequestBody Profesor profesor) {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                .body(studentService.update(uid, student));
+                .body(profesorService.update(uid, profesor));
     }
 
     @DeleteMapping("/{uid}")
-    public ResponseEntity<Void> deleteStudentById(@PathVariable("uid") String uid) {
-        studentService.delete(uid);
+    ResponseEntity<Void>  delete(@PathVariable("uid") String uid) {
+        profesorService.delete(uid);
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
-
 }

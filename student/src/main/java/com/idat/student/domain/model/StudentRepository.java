@@ -9,7 +9,7 @@ public interface StudentRepository {
 
     Student save(Student student);
 
-    Student update(Student student);
+    Student update(String uid, Student student);
 
     void delete(String uid);
 }

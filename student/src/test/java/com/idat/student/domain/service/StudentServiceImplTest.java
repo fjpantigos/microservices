@@ -75,7 +75,7 @@ class StudentServiceImplTest {
 
     @Test
     void update() {
-        when(studentRepository.update(any(Student.class)))
+        when(studentRepository.update(any(String.class), any(Student.class)))
                 .thenReturn(student);
         Student studentUpdated = new Student(
                 null,
@@ -87,7 +87,7 @@ class StudentServiceImplTest {
                 "1",
                 1
         );
-        Student savedStudent = studentService.update(studentUpdated);
+        Student savedStudent = studentService.update("1", studentUpdated);
         assertEquals(student, savedStudent);
     }
 }

@@ -47,8 +47,8 @@ public class StudentAdapter implements StudentRepository {
     }
 
     @Override
-    public Student update(Student student) {
-        Optional<StudentData> studentData = studentDataRepository.findById(student.uid());
+    public Student update(String uid, Student student) {
+        Optional<StudentData> studentData = studentDataRepository.findById(uid);
         if (studentData.isPresent()) {
             StudentData studentData2 = StudentMapper.MAPPER.toEntity(student);
             return StudentMapper.MAPPER.toDomain(studentDataRepository.save(studentData2));

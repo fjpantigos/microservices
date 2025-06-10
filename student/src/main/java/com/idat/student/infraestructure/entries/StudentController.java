@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.ServerResponse;
 
 import java.util.List;
 
@@ -30,8 +29,10 @@ public class StudentController {
     }
 
     @GetMapping("/{uid}")
-    public Student getStudentById(@PathVariable("uid") String uid) {
-        return studentService.findById(uid);
+    public ResponseEntity<Student> getStudentById(@PathVariable("uid") String uid) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(studentService.findById(uid));
     }
 
     @PostMapping
@@ -45,7 +46,7 @@ public class StudentController {
     public ResponseEntity<Student> updateStudent(@PathVariable("uid") String uid, @RequestBody Student student) {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                .body(studentService.update(student));
+                .body(studentService.update(uid, student));
     }
 
     @DeleteMapping("/{uid}")

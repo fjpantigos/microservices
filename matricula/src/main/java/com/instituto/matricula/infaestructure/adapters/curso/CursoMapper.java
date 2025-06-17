@@ -7,6 +7,8 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface CursoMapper {
     CursoMapper MAPPER = Mappers.getMapper(CursoMapper.class);
+
     Curso toModel(CursoData entity);
+
     CursoData toData(Curso model);
 }

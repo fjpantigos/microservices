@@ -2,9 +2,11 @@ package com.instituto.matricula.domain.service.curso;
 
 import com.instituto.matricula.domain.model.curso.Curso;
 import com.instituto.matricula.domain.model.curso.CursoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CursoServiceImpl implements CursoService {
 
     private final CursoRepository cursoRepository;

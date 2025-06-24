@@ -12,7 +12,7 @@ public class AperturaDetalleData {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long uid;
 
     @Column(name = "uid_apertura", length = 40)
     private String uidApertura;

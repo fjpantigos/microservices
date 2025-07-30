@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "curso")
 public class CursoData {
     @Id
+    @Column(length = 40)
     private String uid;
 
     @Column(name = "nombre", length = 60)
